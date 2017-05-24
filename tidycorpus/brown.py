@@ -3,7 +3,7 @@ import nltk
 from sklearn.model_selection import train_test_split
 import random
 
-brown_genre2sym = {
+genre2sym = {
            'news': 'a',  'editorial': 'b',         'reviews': 'c',
        'religion': 'd',    'hobbies': 'e',            'lore': 'f',
  'belles_lettres': 'g', 'government': 'h',         'learned': 'j',
@@ -11,12 +11,12 @@ brown_genre2sym = {
       'adventure': 'n',    'romance': 'p',           'humor': 'r'
 }
 
-brown_sym2genre = {brown_genre_symbol: genre for brown_genre_symbol, genre
-                   in zip(brown_genre2sym.values(), brown_genre2sym.keys())}
+sym2genre = {genre_symbol: genre for genre_symbol, genre
+             in zip(genre2sym.values(), genre2sym.keys())}
 
 def genre_sym2doc_list(genre="mystery"):
     random.seed(1234)
-    genre_sym = brown_genre2sym[genre]
+    genre_sym = genre2sym[genre]
     # FIXME for other genres
     #mystery_filenames = ["cl" + str("%02d" % i) for i in range(1, 25)]
     fnames = [f for f in nltk.corpus.brown.fileids() if f.find('c' + genre_sym) != -1]
